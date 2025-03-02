@@ -16,7 +16,7 @@ app.use(cookieParser())
 
 app.use(
     cors({
-        origin:["http://localhost:5173","http://127.0.0.1:5173,https://url-one-flax.vercel.app"],
+        origin:["http://localhost:5173","http://127.0.0.1:5173,https://url-one-flax.vercel.app","url-git-main-adityas-projects-cbcd3379.vercel.app","https://url-katlmf0pe-adityas-projects-cbcd3379.vercel.app"],
         methods:["GET","POST","PUT","DELETE"],
         credentials:true,
     })
