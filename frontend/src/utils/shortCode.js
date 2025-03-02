@@ -1,9 +1,11 @@
 import axios from "axios";
 
+const api_url=import.meta.api.VITE_API_URL;
+
 const shortCode = async (url) => {
   
   try {
-    const response = await axios.post(`/a/shortcode`, {originalUrl:url});
+    const response = await axios.post(`${api_url}/a/shortcode`, {originalUrl:url});
     return response.data;
   } catch (error) {
     console.log(error)

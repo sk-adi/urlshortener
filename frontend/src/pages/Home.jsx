@@ -17,7 +17,7 @@ function Home() {
         try {
             const data=await shortCode(url)
             if(data.theCode){
-                Setcode(`http://localhost:5173/${data.theCode}`)
+                Setcode(`https://url-one-flax.vercel.app/${data.theCode}`)
                 Setsuccess(`Link shortened successfully`)
             }
             

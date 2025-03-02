@@ -1,10 +1,12 @@
 import axios from "axios";
 
+const api_url=import.meta.env.VITE_API_URL;
+
 const userRegister = async (userData) => {
 
   try {
     const response = await axios.post(
-      `/api/auth/register`,
+      `${api_url}/api/auth/register`,
       userData
     );
     return response.data;
@@ -20,7 +22,7 @@ export { userRegister };
 const userLogin = async (login) => {
   try {
     const response = await axios.post(
-      `/api/auth/login`,
+      `${api_url}/api/auth/login`,
       login
     );
     return response.data;
@@ -40,7 +42,7 @@ export { userLogin };
 
 const userLogOut=async()=>{
   try {
-    const response=await axios.post(`/api/auth/logout`)
+    const response=await axios.post(`${api_url}/api/auth/logout`)
     return response.data
   } catch (error) {
     console.log(error)
