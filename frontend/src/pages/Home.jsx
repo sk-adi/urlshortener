@@ -1,7 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { shortCode } from "../utils/shortCode";
 
 function Home() {
+
+    const [url,Seturl]=useState("")
+    const [code,Setcode]=useState("")
+    const [success,Setsuccess]=useState()
+
+    const handleOnChange = (e) => {
+        Seturl(e.target.value)
+      }
+
+    const handleOnClick=async(e)=>{
+        e.preventDefault()
+        try {
+            const data=await shortCode(url)
+            if(data.theCode){
+                Setcode(`http://localhost:5173/${data.theCode}`)
+                Setsuccess(`Link shortened successfully`)
+            }
+            
+        } catch (error) {
+            console.log(`Error: ${error}`)
+        }
+    }
+
+
+
   return (
     <div className="h-screen flex items-center justify-center bg-gradient-to-r from-blue-700 to-purple-600 p-6">
       <div className="max-w-5xl w-full text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-10">
@@ -25,18 +51,23 @@ function Home() {
             className="border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             type="text"
             placeholder="Enter long link here..."
+            onChange={handleOnChange}
           />
           <input
-            className="border border-gray-300 rounded-lg px-4 py-3 bg-gray-100 text-gray-500 cursor-not-allowed"
+            className="border border-gray-300 rounded-lg px-4 py-3 bg-gray-100 text-gray-500 "
             type="text"
             placeholder="Shortened link will appear here..."
             readOnly
+            
+            value={code}
           />
-          <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-lg transition-all cursor-pointer">
+          <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-lg transition-all cursor-pointer" onClick={handleOnClick}>
             Shorten URL
           </button>
+          <p>{success}</p>
         </div>
       </div>
+      
     </div>
   );
 }

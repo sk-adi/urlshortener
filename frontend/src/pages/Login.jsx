@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { userLogin } from "../api/auth";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function Login() {
     const navigate = useNavigate();
@@ -60,6 +60,7 @@ function Login() {
                             Login
                         </button>
                     </form>
+                    <p>Don't have account ? <NavLink to="/register">Sign Up</NavLink></p>
                 </div>
 
                 {/* Right Section - Call-to-Action */}

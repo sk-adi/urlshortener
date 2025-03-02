@@ -16,7 +16,7 @@ app.use(cookieParser())
 
 app.use(
     cors({
-        origin:"http://localhost:5173",
+        origin:["http://localhost:5173","http://127.0.0.1:5173"],
         methods:["GET","POST","PUT","DELETE"],
         credentials:true,
     })
@@ -24,10 +24,12 @@ app.use(
 
 connectDB()
 
-
+app.use('/api/url',urlRoute)
 app.use('/api/auth',authRouter)
 
-// app.use('/',urlRoute)
+app.use('/a',urlRoute)
+
+
 
 app.get('/',(req,res)=>{
     res.json({message:`express is running`})

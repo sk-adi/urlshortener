@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { userRegister } from "../api/auth";
+import { NavLink } from "react-router-dom";
 
 function SignUp() {
   const [message, Setmessage] = useState();
@@ -60,6 +61,7 @@ function SignUp() {
               Sign Up
             </button>
           </form>
+          <p>Already have account ? <NavLink to="/login">Login Here</NavLink></p>
         </div>
 
         {/* Right Section - Call-to-Action */}
