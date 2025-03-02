@@ -1,8 +1,9 @@
 import axios from "axios";
 
+
 const redirectUser = async (theCode) => {
   try {
-    const response = await axios.get(`http://localhost:5000/api/url/${theCode}`);
+    const response = await axios.get(`/api/url/${theCode}`);
     return response.data;
   } catch (error) {
     console.log(error);

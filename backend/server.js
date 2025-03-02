@@ -16,7 +16,7 @@ app.use(cookieParser())
 
 app.use(
     cors({
-        origin:["http://localhost:5173","http://127.0.0.1:5173"],
+        origin:["http://localhost:5173","http://127.0.0.1:5173,https://urlshortener-1-uxie.onrender.com/"],
         methods:["GET","POST","PUT","DELETE"],
         credentials:true,
     })

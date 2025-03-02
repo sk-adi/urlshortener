@@ -1,9 +1,10 @@
 import axios from "axios";
 
 const userRegister = async (userData) => {
+
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/auth/register",
+      `/api/auth/register`,
       userData
     );
     return response.data;
@@ -19,7 +20,7 @@ export { userRegister };
 const userLogin = async (login) => {
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/auth/login",
+      `/api/auth/login`,
       login
     );
     return response.data;
@@ -39,7 +40,7 @@ export { userLogin };
 
 const userLogOut=async()=>{
   try {
-    const response=await axios.post('http://localhost:5000/api/auth/logout')
+    const response=await axios.post(`/api/auth/logout`)
     return response.data
   } catch (error) {
     console.log(error)
