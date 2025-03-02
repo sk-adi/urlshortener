@@ -1,0 +1,9 @@
+{
+    "rewrites": [
+      {
+        "source": "/:id",
+        "destination": "https://urlshortener-1-uxie.onrender.com/:id"
+      }
+    ]
+  }
+  
