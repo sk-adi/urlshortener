@@ -12,7 +12,8 @@ function Redirect() {
                 const response = await redirectUser(code)
 
                 if (response.redirectUrl) {
-                    window.location.href = response.redirectUrl
+                    //window.location.href = response.redirectUrl
+                    
 
                 }
                 else {

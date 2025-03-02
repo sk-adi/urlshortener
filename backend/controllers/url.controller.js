@@ -22,7 +22,8 @@ const urlRedirect = async (req, res) => {
   try {
     const urlCode = req.params.id;
     const url = await shortUrl.findOne({ urlCode });
-    res.json({ redirectUrl: `${url.originalUrl}` });
+   // res.json({ redirectUrl: `${url.originalUrl}` });
+   res.redirect(url.originalUrl)
   } catch (error) {
     res.json({ message: `Link not working ! Error: ${error}` });
   }
