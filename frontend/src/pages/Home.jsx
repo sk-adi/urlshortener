@@ -18,7 +18,7 @@ function Home() {
             </button>
           </NavLink>
         </div>
-
+        
         {/* Right Section */}
         <div className="w-full md:w-1/2 bg-white p-6 rounded-xl shadow-lg flex flex-col gap-4">
           <input
