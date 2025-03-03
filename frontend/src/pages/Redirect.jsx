@@ -13,7 +13,7 @@ function Redirect() {
     useEffect(() => {
         const fetchUrlAndRedirect = async () => {
 
-            if(internalRoutes.includes(`/${code}`)){
+            if(internalRoutes.includes(code)){
                 navigate(`/${code}`)
                 return;
             }
