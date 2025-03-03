@@ -11,10 +11,7 @@ function Redirect() {
     const navigate = useNavigate()
     const { code } = useParams()
     useEffect(() => {
-        if (internalRoutes.includes(code)) {
-            navigate(`/${code}`)
-            return;
-        }
+        
 
         const fetchUrlAndRedirect = async () => {
 
@@ -35,7 +32,12 @@ function Redirect() {
 
             }
         }
-        fetchUrlAndRedirect()
+        if (!internalRoutes.includes(code)) {
+            //navigate(`/${code}`)
+            fetchUrlAndRedirect()
+        
+        }
+
 
     }, [code])
 
