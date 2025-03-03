@@ -24,11 +24,11 @@ app.use(
 
 connectDB()
 
-app.use('/api/url',urlRoute)
+
 app.use('/api/auth',authRouter)
 
 app.use('/a',urlRoute)
-
+app.use('/api/url',urlRoute)
 
 
 app.get('/',(req,res)=>{
