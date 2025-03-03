@@ -59,7 +59,7 @@ function Login() {
                     </form>
                     <p>
                         Don't have an account? {' '}
-                        <NavLink to="/api/register" className="text-blue-400 hover:underline">
+                        <NavLink to="/register" className="text-blue-400 hover:underline">
                             Sign Up
                         </NavLink>
                     </p>

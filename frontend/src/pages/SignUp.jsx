@@ -31,7 +31,7 @@ function SignUp() {
             <span className="text-blue-400">Create Your Free Account</span>
           </h1>
           <p className="text-gray-300">Sign up now to manage and track your shortened links efficiently.</p>
-          <NavLink to="/api/login">
+          <NavLink to="/login">
             <p className="text-blue-400 hover:underline">Already have an account? Login here.</p>
           </NavLink>
         </div>
