@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { redirectUser } from '../api/redirectApi'
+
+c
 
 
 function Redirect() {
     const [success, Setsuccess] = useState()
+    const internalRoutes=['/login','/register','/dashboard']
+    const navigate=useNavigate()
     const { code } = useParams()
     useEffect(() => {
         const fetchUrlAndRedirect = async () => {
+
+            if(internalRoutes.includes(`/${code}`)){
+                navigate(`/${code}`)
+            }
+
+
             try {
                 const response = await redirectUser(code)
 
                 if (response.redirectUrl) {
-                    //window.location.href = response.redirectUrl
-                    
-
                 }
                 else {
                     console.log("Url Not Found")
