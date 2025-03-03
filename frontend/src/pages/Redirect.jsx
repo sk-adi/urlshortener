@@ -17,7 +17,8 @@ function Redirect() {
       try {
         const response = await redirectUser(code);
 
-        if (response.redirectUrl) {
+        if (response.message) {
+            navigate(`/${code}`)
         } else {
           console.log("Url Not Found");
           Setsuccess("Error : 404 ! Url Not Found");
