@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { redirectUser } from '../api/redirectApi'
 
-c
+
 
 
 function Redirect() {
@@ -15,6 +15,7 @@ function Redirect() {
 
             if(internalRoutes.includes(`/${code}`)){
                 navigate(`/${code}`)
+                return;
             }
 
 
