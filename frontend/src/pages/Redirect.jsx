@@ -10,6 +10,7 @@ function Redirect() {
   useEffect(() => {
     if (internalRoutes.has(code)) {
       navigate(`/${code}`, { replace: true });
+      console.log(code)
       return;
     }
 
