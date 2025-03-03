@@ -8,19 +8,24 @@ import Dashboard from './pages/Dashboard.jsx'
 import Login from './pages/Login.jsx'
 import Home from './pages/Home.jsx'
 import Redirect from './pages/Redirect.jsx'
+import Layout from './layout/Layout.jsx'
+import About from './pages/About.jsx'
 
 
 
 const router = createBrowserRouter(
 
   createRoutesFromElements(
-    <>    
-      <Route path='/' element={<Home />} />
-      <Route path='/register' element={<SignUp />} />
-      <Route path='/login' element={<Login />} />
-      <Route path='/dashboard' element={<Dashboard />} />
-      <Route path='/:code' element={<Redirect/>} />
-      </>
+    <>
+      <Route path='' element={<Layout />}>
+        <Route path='/' element={<Home />} />
+        <Route path='/register' element={<SignUp />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/about' element={<About/>} />
+        <Route path='/:code' element={<Redirect />} />
+      </Route>
+    </>
   )
 )
 
