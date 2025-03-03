@@ -7,7 +7,7 @@ import { redirectUser } from '../api/redirectApi'
 
 function Redirect() {
     const [success, Setsuccess] = useState()
-    const internalRoutes=['/login','/register','/dashboard']
+    const internalRoutes=['login','register','dashboard']
     const navigate=useNavigate()
     const { code } = useParams()
     useEffect(() => {
