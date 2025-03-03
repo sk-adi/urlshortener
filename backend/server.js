@@ -40,6 +40,9 @@ app.get('/',(req,res)=>{
 
 
 
+// app.listen(2000,()=>{
+//     console.log(`server is running on http://localhost:3000`)
+// })
 app.listen(process.env.PORT,()=>{
     console.log(`server is running on http://localhost:${process.env.PORT}`)
 })

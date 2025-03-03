@@ -8,7 +8,8 @@ const urlCodeSchema=new mongoose.Schema(
         },
         originalUrl:{
             type:String,
-            required:true
+            required:true,
+            unique:true
         }
     }
     ,{timestamps:true})

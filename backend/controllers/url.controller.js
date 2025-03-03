@@ -2,15 +2,34 @@ import shortUrl from "../models/urlCode.model.js";
 import { nanoid } from "nanoid";
 
 const shortTheUrl = async (req, res) => {
-  const { originalUrl } = req.body;
-  const getUrl = originalUrl;
-  const id = nanoid(5);
   try {
+    const { originalUrl } = req.body;
+    const getUrl = originalUrl;
+    const urlExist = await shortUrl.findOne({ originalUrl: originalUrl });
+    if (urlExist) {
+      res.cookie("existingCode",urlExist.urlCode,{
+        httpOnly:true,
+        maxAge:60*60*1000,
+        secure:true,
+        sameSite:"Lax"
+  
+      })
+      return res.json({ theCode: urlExist.urlCode });
+
+    }
+    const id = nanoid(5);
     const saveCode = new shortUrl({ urlCode: id, originalUrl: getUrl });
     await saveCode.save();
+    res.cookie("shortCode",id,{
+      httpOnly:true,
+      maxAge:60*60*1000,
+      //secure:true,
+      sameSite:"Lax"
+
+    })
     res.json({ theCode: id });
   } catch (error) {
-    return error;
+    return res.status(500).json({message:`Internal Server Error`});
   }
 };
 
@@ -22,10 +41,12 @@ const urlRedirect = async (req, res) => {
   try {
     const urlCode = req.params.id;
     const url = await shortUrl.findOne({ urlCode });
-   // res.json({ redirectUrl: `${url.originalUrl}` });
-   res.redirect(url.originalUrl)
+    if(!url){
+      return res.status(404).json({message:`Link not found`})
+    }
+    res.redirect(url.originalUrl);
   } catch (error) {
-    res.json({ message: `Link not working ! Error: ${error}` });
+    res.status(500).json({ message: `Link not working ! Error: ${error}` });
   }
 };
 
