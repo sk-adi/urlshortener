@@ -34,7 +34,7 @@ function Home() {
                         <br />
                         <span className="text-blue-400">Shorten URLs Instantly.</span>
                     </h1>
-                    <NavLink to="/register">
+                    <NavLink to="/api/register">
                         <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-all">
                             Get Started
                         </button>

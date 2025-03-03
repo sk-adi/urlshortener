@@ -32,7 +32,7 @@ function Dashboard() {
     try {
       const data = await userLogOut();
       if (data.message) {
-        navigate("/login");
+        navigate("/api/login");
       } else {
         alert(data);
       }
