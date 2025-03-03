@@ -41,6 +41,22 @@ function Dashboard() {
     }
   };
 
+  //copy the shortened link
+
+  const handleToCopy=()=>{
+    const outputArea=document.getElementById("outputArea")
+    outputArea.select();
+    navigator.clipboard.writeText(outputArea.value)
+  }
+
+
+
+
+
+
+
+
+
   return (
     <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-r from-gray-900 to-gray-800 p-6">
       <div className="max-w-2xl w-full bg-gray-900 shadow-xl rounded-lg p-8 text-white">
@@ -59,7 +75,9 @@ function Dashboard() {
             readOnly
             value={code}
             placeholder="Shortened URL will appear here"
+            id="outputArea"
           />
+          
         </div>
 
         <div className="flex justify-between mt-6">
@@ -71,9 +89,9 @@ function Dashboard() {
           </button>
           <button
             className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-all"
-            onClick={handleOnClick}
+            onClick={handleToCopy}
           >
-            Log Out
+            Copy
           </button>
         </div>
 
