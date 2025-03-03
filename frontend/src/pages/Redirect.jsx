@@ -27,7 +27,7 @@ function Redirect() {
       }
     };
     fetchUrlAndRedirect();
-  }, [code]);
+  }, [code,navigate]);
 
   return (
     <>
