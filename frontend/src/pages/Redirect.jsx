@@ -7,16 +7,17 @@ import { redirectUser } from '../api/redirectApi'
 
 function Redirect() {
     const [success, Setsuccess] = useState()
-    const internalRoutes=['login','register','dashboard']
-    const navigate=useNavigate()
+    const internalRoutes = ['login', 'register', 'dashboard']
+    const navigate = useNavigate()
     const { code } = useParams()
     useEffect(() => {
+        if (internalRoutes.includes(code)) {
+            navigate(`/${code}`)
+            return;
+        }
+
         const fetchUrlAndRedirect = async () => {
 
-            if(internalRoutes.includes(code)){
-                navigate(`/${code}`)
-                return;
-            }
 
 
             try {
