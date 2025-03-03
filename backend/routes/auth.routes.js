@@ -4,12 +4,13 @@ import {
   logOut,
   registerUser,
 } from "../controllers/auth.controller.js";
+import {  validateLogin, validateRegistration } from "../middlewares/auth.middlewares.js";
 
 const authRouter = express.Router();
 
-authRouter.post("/register", registerUser);
+authRouter.post("/register",validateRegistration, registerUser);
 
-authRouter.post("/login", loginUser);
+authRouter.post("/login",validateLogin, loginUser);
 
 authRouter.post("/logout", logOut);
 
