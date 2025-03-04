@@ -11,6 +11,7 @@ import Redirect from './pages/Redirect.jsx'
 import Layout from './layout/Layout.jsx'
 import About from './pages/About.jsx'
 import RouteProtect from './routes/RouteProtect.jsx'
+import UserHistory from './pages/UserHistory.jsx'
 
 
 
@@ -25,7 +26,7 @@ const router = createBrowserRouter(
         <Route path='/api/login' element={<Login />} />
         <Route path='dashboard' element={<Dashboard />} />
         <Route path='/user' element={<RouteProtect />}>
-          <Route path='routesHistory' element={<userRoutesHistory/>} />
+          <Route path='routesHistory' element={<UserHistory/>} />
         </Route>
         <Route path='/about' element={<About />} />
         <Route path='/:code' element={<Redirect />} />
