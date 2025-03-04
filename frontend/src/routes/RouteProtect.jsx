@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { isLoggedIn } from '../api/auth'
-import { Navigate } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 
 function RouteProtect() {
     const [isAuthenticated, setIsAuthenticated] = useState(null)
@@ -9,9 +9,16 @@ function RouteProtect() {
             const token = sessionStorage.getItem("token")
             if (!token) {
                 setIsAuthenticated(false)
+                return ;
             }
-            const authenticatedUser = await isLoggedIn(token)
-            setIsAuthenticated(authenticatedUser.success)
+            try {
+                const authenticatedUser = await isLoggedIn(token)
+                setIsAuthenticated(authenticatedUser.success)
+                
+            } catch (error) {
+                setIsAuthenticated(false);
+                
+            }
         }
 
         checkAuth()
@@ -19,7 +26,7 @@ function RouteProtect() {
 
     if (isAuthenticated === null) return <p>Loading...</p>
 
-    return isAuthenticated ? <Outlet /> : <Navigate to="/login" />
+    return isAuthenticated ? <Outlet/> : <Navigate to="/login" />
 }
 
 export default RouteProtect
