@@ -76,7 +76,6 @@ const loginUser = async (req, res) => {
       maxAge: 60 * 60 * 1000, // 1 hour
       secure: true, // Required for cross-site cookies
       sameSite: "None", // Allows cross-origin requests
-      domain: "url-one-flax.vercel.app", 
       path: "/",
     });
     
