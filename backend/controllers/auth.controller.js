@@ -73,13 +73,13 @@ const loginUser = async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      maxAge: 60 * 60 * 1000,
-      secure:true,
-      sameSite: "None",
-      domain:"https://url-one-flax.vercel.app",
-      path:"/"
+      maxAge: 60 * 60 * 1000, // 1 hour
+      secure: true, // Required for cross-site cookies
+      sameSite: "None", // Allows cross-origin requests
+      domain: "url-one-flax.vercel.app", 
+      path: "/",
     });
-
+    
     res.json({ message: `Login Successful`, redirectUrl: "/dashboard" });
   } catch (error) {
     res.status(500).json({ message: `Login failed ! Error :${error}` });
