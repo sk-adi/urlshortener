@@ -1,27 +1,23 @@
-import React, { useEffect, useState } from 'react'
-import { redirectUser } from '../api/redirectApi'
-import {  useNavigate, useParams } from 'react-router-dom'
+import React, { useEffect } from "react";
+import { redirectUser } from "../api/redirectApi";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Redirect() {
-  const internalRoutes=new Set(["login","register","dashboard","history","user"])
+  const internalRoutes = new Set(["login", "register", "dashboard", "routehistory", "user"]);
+  const { code } = useParams();
+  const navigate = useNavigate();
 
-  const [isInternalRoutes,SetisInternalRoutes]=useState(false)
-  const {code}=useParams()
-  const navigate=useNavigate()
-
-  useEffect(()=>{
-    if(internalRoutes.has(code)){
-       SetisInternalRoutes(true)
-       navigate(`/${code}`,{replace:true})
+  useEffect(() => {
+    if (internalRoutes.has(code)) {
+      navigate(`/${code}`, { replace: true });
+      return; // ⬅ Stop execution here
     }
-    else{
-      redirectUser(code)
-    }
-  },[code,navigate])
 
-  return (
-    <div>Redirect</div>
-  )
+    // If not an internal route, call the redirect function
+    redirectUser(code);
+  }, [code, navigate]);
+
+  return <div>Redirecting...</div>;
 }
 
-export default Redirect
+export default Redirect;
