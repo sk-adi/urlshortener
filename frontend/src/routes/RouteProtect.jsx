@@ -7,7 +7,7 @@ function RouteProtect() {
     useEffect(() => {
         const checkAuth = async () => {
             const token = sessionStorage.getItem("token")
-            console.log(token)
+            console.log(`token is ${token}`)
             if (!token) {
                 setIsAuthenticated(false)
                 return ;

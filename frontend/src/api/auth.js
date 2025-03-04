@@ -23,7 +23,10 @@ const userLogin = async (login) => {
   try {
     const response = await axios.post(
       `${api_url}/api/auth/login`,
-      login
+      login,
+      {
+        withCredentials:true
+      }
     );
     return response.data;
   } catch (error) {

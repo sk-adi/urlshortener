@@ -7,29 +7,26 @@ const shortTheUrl = async (req, res) => {
     const getUrl = originalUrl;
     const urlExist = await shortUrl.findOne({ originalUrl: originalUrl });
     if (urlExist) {
-      res.cookie("existingCode",urlExist.urlCode,{
-        httpOnly:true,
-        maxAge:60*60*1000,
-        secure:true,
-        sameSite:"Lax"
-  
-      })
+      res.cookie("existingCode", urlExist.urlCode, {
+        httpOnly: true,
+        maxAge: 60 * 60 * 1000,
+        secure: true,
+        sameSite: "Lax",
+      });
       return res.json({ theCode: urlExist.urlCode });
-
     }
     const id = nanoid(5);
     const saveCode = new shortUrl({ urlCode: id, originalUrl: getUrl });
     await saveCode.save();
-    res.cookie("shortCode",id,{
-      httpOnly:true,
-      maxAge:60*60*1000,
+    res.cookie("shortCode", id, {
+      httpOnly: true,
+      maxAge: 60 * 60 * 1000,
       //secure:true,
-      sameSite:"Lax"
-
-    })
+      sameSite: "Lax",
+    });
     res.json({ theCode: id });
   } catch (error) {
-    return res.status(500).json({message:`Internal Server Error`});
+    return res.status(500).json({ message: `Internal Server Error` });
   }
 };
 
@@ -41,8 +38,8 @@ const urlRedirect = async (req, res) => {
   try {
     const urlCode = req.params.id;
     const url = await shortUrl.findOne({ urlCode });
-    if(!url){
-      return res.status(404).json({message:`Link not found`})
+    if (!url) {
+      return res.status(404).json({ message: `backend Link not found` });
     }
     res.redirect(url.originalUrl);
   } catch (error) {
