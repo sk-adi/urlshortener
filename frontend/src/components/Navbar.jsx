@@ -103,7 +103,7 @@ function Navbar() {
           </li>
           <li>
             <NavLink
-              to="/login"
+              to="/api/login"
               onClick={() => setIsOpen(false)}
               className="block bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 mx-10 rounded-lg transition-all"
             >

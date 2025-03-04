@@ -75,7 +75,7 @@ const loginUser = async (req, res) => {
       httpOnly: true,
       maxAge: 60 * 60 * 1000,
       secure:true,
-      sameSite: "Lax",
+      sameSite: none,
     });
 
     res.json({ message: `Login Successful`, redirectUrl: "/dashboard" });
