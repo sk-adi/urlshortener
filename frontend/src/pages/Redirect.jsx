@@ -7,15 +7,17 @@ function Redirect() {
   const { code } = useParams();
   const navigate = useNavigate();
 
+  useEffect(() => {
     if (internalRoutes.has(code)) {
       navigate(`/${code}`, { replace: true });
-      return; // ⬅ Stop execution here
+      return; // Prevents further execution
     }
-    else{
-      useEffect(()=>{
-        redirectUser(code)
-      })
-    }
+
+    // Call backend for external routes
+    console.log(`calling backend`)
+    redirectUser(code);
+  }, [code, navigate]); // Runs only when `code` changes
+
   return <div>Redirecting...</div>;
 }
 
