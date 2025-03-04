@@ -10,6 +10,9 @@ import Home from './pages/Home.jsx'
 import Redirect from './pages/Redirect.jsx'
 import Layout from './layout/Layout.jsx'
 import About from './pages/About.jsx'
+import ProtectedRoutes from './routes/protectedRoutes.jsx'
+import userRoutesHistory from './pages/userRoutesHistory.jsx'
+
 
 
 
@@ -21,13 +24,17 @@ const router = createBrowserRouter(
         <Route path='/' element={<Home />} />
         <Route path='/register' element={<SignUp />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/dashboard' element={<Dashboard />} />
-        <Route path='/about' element={<About/>} />
+        <Route path='/user' element={<ProtectedRoutes />}>
+          <Route path='dashboard' element={<Dashboard />} />
+          <Route path='routesHistory' element={<userRoutesHistory/>} />
+        </Route>
+        <Route path='/about' element={<About />} />
         <Route path='/:code' element={<Redirect />} />
       </Route>
     </>
   )
 )
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

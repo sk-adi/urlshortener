@@ -52,3 +52,26 @@ const userLogOut=async()=>{
 
 
 export { userLogOut }
+
+
+
+//verify token to access protected routes
+
+
+const isLoggedIn=async(token)=>{
+
+  try {
+    const response=await axios.get(`${api_url}/api/auth/verify`,
+      {
+        headers:{Authorization:`Bearer ${token}`}
+      }
+    )
+    return response.data
+    
+  } catch (error) {
+    console.log(`isLoggedIn Error:`,error)
+  }
+}
+
+
+export { isLoggedIn }

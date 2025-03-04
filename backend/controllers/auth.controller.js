@@ -25,7 +25,7 @@ const registerUser = async (req, res) => {
     const newUser = new User({ name, email, password: hashedPassword });
 
     await newUser.save();
-    console.log(`User Registered`)
+    console.log(`User Registered`);
 
     res.json({
       message: `Registered Successfully Welcome ${name}! Please Login`,
@@ -92,13 +92,35 @@ export { loginUser };
 const logOut = async (req, res) => {
   try {
     res.clearCookie("token");
-    res.json({message:"Logout Successfull"});
+    res.json({ message: "Logout Successfull" });
   } catch (error) {
     res.json({ message: `LogOut failed ! Error: ${error}` });
   }
 };
 
+export { logOut };
+
+{
+  /*token authentication*/
+}
+
+const verifyToken = async (req, res) => {
+  try {
+    const { token } = req.headers.authorization?.split(" "[1]);
+  if (!token) {
+    return res.status(500).json({success:false, message: "Unauthorized" });
+  }
+
+  jwt.verify(token, secretKey, (err, user) => {
+    if (err) return res.status(403).json({succes:false, message: "Invalid Token" });
+    res.status(200).json({succes:true , message: "Authorised" });
+  });
+    
+  } catch (error) {
+    res.status(500).json({succes:false,message:"Internal server error"})
+    
+  }
+};
 
 
-
-export { logOut }
+export { verifyToken }

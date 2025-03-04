@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 
 function SignUp() {
   const [message, Setmessage] = useState();
+  const [validCheck, SetvalidCheck] = useState();
   const [user, Setuser] = useState({ name: "", email: "", password: "" });
 
   const handleOnChange = (e) => {
@@ -13,6 +14,10 @@ function SignUp() {
   const handleOnRegister = async (e) => {
     e.preventDefault();
     try {
+      if(!(user.name && user.email && user.password)){
+        return SetvalidCheck(`Name,Email and Password are required`)
+      }
+      SetvalidCheck('')
       const data = await userRegister(user);
       Setmessage(data.message);
     } catch (error) {
@@ -39,13 +44,14 @@ function SignUp() {
         {/* Right Section */}
         <div className="w-full md:w-1/2 bg-gray-900 p-6 rounded-xl shadow-lg flex flex-col gap-4">
           {message && <p className="text-green-400 font-medium">{message}</p>}
+          {validCheck && <p className="text-red-400 font-medium">{validCheck}</p>}
           <form onSubmit={handleOnRegister} className="flex flex-col gap-4">
             <input
               className="border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-800 text-white placeholder-gray-400"
               onChange={handleOnChange}
               name="name"
               type="text"
-              required
+              
               placeholder="Full Name"
             />
             <input
@@ -53,7 +59,7 @@ function SignUp() {
               onChange={handleOnChange}
               name="email"
               type="email"
-              required
+              
               placeholder="Email"
             />
             <input
@@ -61,7 +67,7 @@ function SignUp() {
               onChange={handleOnChange}
               name="password"
               type="password"
-              required
+              
               placeholder="Password"
             />
             <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-lg transition-all cursor-pointer">

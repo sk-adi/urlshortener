@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { userLogOut } from "../api/auth";
 import { shortCode } from "../utils/shortCode";
 
@@ -27,19 +27,7 @@ function Dashboard() {
     }
   };
 
-  const handleOnClick = async (e) => {
-    e.preventDefault();
-    try {
-      const data = await userLogOut();
-      if (data.message) {
-        navigate("/login");
-      } else {
-        alert(data);
-      }
-    } catch (error) {
-      console.error(`Error in dashboard logout: ${error}`);
-    }
-  };
+  
 
   //copy the shortened link
 
@@ -96,6 +84,7 @@ function Dashboard() {
         </div>
 
         {success && <p className="text-green-400 text-center mt-4">{success}</p>}
+        <NavLink to="/routesHistory">History</NavLink>
       </div>
     </div>
   );
