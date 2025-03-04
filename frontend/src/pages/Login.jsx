@@ -16,7 +16,7 @@ function Login() {
         try {
             const data = await userLogin(LoginData);
             if (data.redirectUrl) {
-                localStorage.setItem(data.token)
+                localStorage.setItem("token",data.token)
                 console.log(data.token)
                 navigate(data.redirectUrl);
             } else {
