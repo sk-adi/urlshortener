@@ -76,6 +76,8 @@ const loginUser = async (req, res) => {
       maxAge: 60 * 60 * 1000,
       secure:true,
       sameSite: "None",
+      domain:"https://url-one-flax.vercel.app",
+      path:"/"
     });
 
     res.json({ message: `Login Successful`, redirectUrl: "/dashboard" });
