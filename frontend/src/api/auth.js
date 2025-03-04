@@ -64,6 +64,7 @@ export { userLogOut }
 const isLoggedIn=async(token)=>{
   console.log("isloggedin js called")
   try {
+    console.log(token)
     const response=await axios.post(`${api_url}/api/auth/verify`,
       {
         headers:{Authorization:`Bearer ${token}`}
