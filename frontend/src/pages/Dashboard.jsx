@@ -84,7 +84,7 @@ function Dashboard() {
         </div>
 
         {success && <p className="text-green-400 text-center mt-4">{success}</p>}
-        <NavLink to="/routesHistory">History</NavLink>
+        <NavLink to="/user/routesHistory">History</NavLink>
       </div>
     </div>
   );
