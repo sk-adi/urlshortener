@@ -29,7 +29,7 @@ const router = createBrowserRouter(
           <Route path='routesHistory' element={<UserHistory/>} />
         </Route>
         <Route path='/about' element={<About />} />
-        <Route path='/:code' element={<Redirect />} />
+        {/* <Route path='/:code' element={<Redirect />} /> */}
       </Route>
     </>
   )
