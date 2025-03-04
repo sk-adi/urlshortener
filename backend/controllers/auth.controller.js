@@ -107,18 +107,20 @@ export { logOut };
 
 const verifyToken = async (req, res) => {
   try {
-    const { token } = req.headers.authorization?.split(" "[1]);
+    const authHeader=req.headers.authorization
+    const token = authHeader && authHeader.split(" ")[1]
   if (!token) {
-    return res.status(500).json({success:false, message: "Unauthorized" });
+    return res.status(401).json({success:false, message: "Unauthorized" });
   }
 
-  jwt.verify(token, secretKey, (err, user) => {
-    if (err) return res.status(403).json({succes:false, message: "Invalid Token" });
-    res.status(200).json({succes:true , message: "Authorised" });
+   jwt.verify(token, secretKey, (err, user) => {
+    if (err) return res.status(403).json({success:false, message: "Invalid Token" });
+    req.user=user
+   return res.status(200).json({succsuccesses:true , message: "Authorised" });
   });
     
   } catch (error) {
-    res.status(500).json({succes:false,message:"Internal server error"})
+    res.status(500).json({success:false,message:"Internal server error",error:error.message})
     
   }
 };
