@@ -79,7 +79,7 @@ const loginUser = async (req, res) => {
       path: "/",
     });
     
-    res.json({ message: `Login Successful`, redirectUrl: "/dashboard" });
+    res.json({ message: `Login Successful`, redirectUrl: "/dashboard"  ,token:token});
   } catch (error) {
     res.status(500).json({ message: `Login failed ! Error :${error}` });
     console.log(`Login error Error: ${error}`);

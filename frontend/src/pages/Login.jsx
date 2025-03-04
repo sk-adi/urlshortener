@@ -17,7 +17,7 @@ function Login() {
             const data = await userLogin(LoginData);
             if (data.redirectUrl) {
                 localStorage.setItem("token",data.token)
-                console.log(data.token)
+                console.log(data)
                 navigate(data.redirectUrl);
             } else {
                 Setmessage(data.message);
