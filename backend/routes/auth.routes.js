@@ -16,7 +16,7 @@ authRouter.post("/login",validateLogin, loginUser);
 
 authRouter.post("/logout", logOut);
 
-authRouter.post("/verify",verifyToken)
+authRouter.get("/verify",verifyToken)
 
 
 export { authRouter };

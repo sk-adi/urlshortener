@@ -113,11 +113,9 @@ const verifyToken = async (req, res) => {
     return res.status(401).json({success:false, message: "Unauthorized" });
   }
 
-   jwt.verify(token, secretKey, (err, user) => {
-    if (err) return res.status(403).json({success:false, message: "Invalid Token" });
-    req.user=user
-   return res.status(200).json({succsuccesses:true , message: "Authorised" });
-  });
+   const user=jwt.verify(token,secretKey)
+   req.user=user
+   return res.status(200).json({success:true,message:"Authorized"})
     
   } catch (error) {
     res.status(500).json({success:false,message:"Internal server error",error:error.message})
