@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 function Redirect() {
   const internalRoutes = new Set(["login", "register", "dashboard", "routehistory", "user"]);
   const { code } = useParams();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   useEffect(() => {
     console.log(`redirect running and this is code ${code}`)
