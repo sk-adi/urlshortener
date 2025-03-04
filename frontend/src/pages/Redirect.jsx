@@ -1,42 +1,27 @@
-import React, { useEffect, useState } from "react";
-import { replace, useNavigate, useParams } from "react-router-dom";
-import { redirectUser } from "../api/redirectApi";
+import React, { useEffect, useState } from 'react'
+import { redirectUser } from '../api/redirectApi'
+import {  useNavigate, useParams } from 'react-router-dom'
 
 function Redirect() {
-  const [success, Setsuccess] = useState();
-  const internalRoutes = new Set(["login", "register", "dashboard"]);
-  const navigate = useNavigate();
-  const { code } = useParams();
-  useEffect(() => {
-    if (internalRoutes.has(code)) {
-      navigate(`/${code}`, { replace: true });
-      console.log(code)
-      return;
+  const internalRoutes=new Set(["login","register","dashboard","history","user"])
+
+  const [isInternalRoutes,SetisInternalRoutes]=useState(false)
+  const {code}=useParams()
+  const navigate=useNavigate()
+
+  useEffect(()=>{
+    if(internalRoutes.has(code)){
+       SetisInternalRoutes(true)
+       navigate(`/${code}`,{replace:true})
     }
-
-    const fetchUrlAndRedirect = async () => {
-      try {
-        const response = await redirectUser(code);
-
-        if (response.message) {
-            navigate(`/${code}`)
-        } else {
-          console.log("Url Not Found");
-          Setsuccess("Error : 404 ! Url Not Found");
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchUrlAndRedirect();
-  }, [code,navigate]);
+    else{
+      redirectUser(code)
+    }
+  },[code,navigate])
 
   return (
-    <>
-      <h1>redirecting...</h1>
-      <h1>{success}</h1>
-    </>
-  );
+    <div>Redirect</div>
+  )
 }
 
-export default Redirect;
+export default Redirect
